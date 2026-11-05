@@ -16,7 +16,7 @@ async function loadConfig() {
       }
       const config = await response.json();
 
-      if (response.status === 503 && config.configured === false) {
+      if (response.ok && config.configured === false) {
         return null;
       }
       if (!response.ok || !config.configured) {

@@ -5,7 +5,7 @@ export default function handler(_request, response) {
   response.setHeader("Cache-Control", "no-store");
 
   if (!supabaseUrl || !supabaseKey) {
-    response.status(503).json({
+    response.status(200).json({
       configured: false,
       message: "Supabase belum dikonfigurasi untuk deployment ini.",
     });
