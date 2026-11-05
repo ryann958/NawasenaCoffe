@@ -6,7 +6,7 @@ export const businessConfig = Object.freeze({
   instagramUrl: null,
   facebookUrl: null,
   emailAddress: null,
-  address: null,
+  address: "Jl. Temuireng No.85 A Rt:02 /Rw:05 Banyumanik - Semarang",
   googleMapsUrl: null,
   openingHours: null,
   currency: "IDR",
