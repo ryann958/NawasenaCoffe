@@ -887,6 +887,48 @@ img {
   font-size: 0.7rem;
 }
 
+.menu-card__order {
+  display: flex;
+  min-height: 2.65rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgb(197 138 82 / 55%);
+  border-radius: 999px;
+  color: var(--color-cream);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition:
+    background-color var(--transition-duration-fast) var(--transition-easing),
+    border-color var(--transition-duration-fast) var(--transition-easing),
+    color var(--transition-duration-fast) var(--transition-easing);
+}
+
+.menu-card__order:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+
+.menu-card__order:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.menu-card__order > svg:first-child {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+.menu-card__order .link-arrow-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
 .gallery-section {
   background:
     radial-gradient(ellipse at 12% 45%, rgb(91 53 31 / 14%), transparent 32%),

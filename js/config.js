@@ -1,8 +1,7 @@
 export const businessConfig = Object.freeze({
   businessName: "Nawasena Coffee",
   brandDisplayName: "Nawasena Coffee",
-  // Keep unverified owner-provided details null until they are confirmed.
-  whatsappNumber: null,
+  whatsappNumber: "+6281363799776",
   instagramUrl: null,
   facebookUrl: null,
   emailAddress: null,

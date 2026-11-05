@@ -149,6 +149,32 @@ function renderMenu(container, items) {
     }
 
     body.append(category, title, description, footer);
+    if (item.available) {
+      const orderUrl = getSocialDestination(
+        "whatsapp",
+        `Halo Nawasena Coffee, saya ingin memesan:\n\nMenu: ${item.name}\nJumlah: \n\nMohon info ketersediaannya. Terima kasih.`,
+      );
+
+      if (orderUrl) {
+        const orderLink = document.createElement("a");
+        orderLink.className = "menu-card__order";
+        orderLink.href = orderUrl;
+        orderLink.target = "_blank";
+        orderLink.rel = "noopener noreferrer";
+        orderLink.setAttribute("aria-label", `Order ${item.name} via WhatsApp`);
+        orderLink.innerHTML = `
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M20.2 11.7a8.1 8.1 0 0 1-12 7.1L4 20l1.2-4A8.1 8.1 0 1 1 20.2 11.7Z" />
+            <path d="M9 8.2c.2-.4.4-.4.7-.4h.4c.2 0 .3.1.4.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.5.7c.2.1.4.2.4.4v.4c0 .3-.1.5-.4.7-.5.3-1.2.5-1.9.4-1.1-.2-2.4-.9-3.6-2.1-1.2-1.2-1.9-2.5-2.1-3.6-.1-.7.1-1.4.4-1.9Z" />
+          </svg>
+          <span>Order Now</span>
+          <svg class="link-arrow-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M4 10h11m-4-4 4 4-4 4" />
+          </svg>`;
+        body.append(orderLink);
+      }
+    }
+
     card.append(visual, body);
     container.append(card);
   });
@@ -329,11 +355,13 @@ function renderSocialLinks() {
   });
 }
 
-function getSocialDestination(platform) {
+function getSocialDestination(platform, message = "Halo Nawasena Coffee.") {
   if (platform === "whatsapp") {
     const number = businessConfig.whatsappNumber;
     const normalizedNumber = typeof number === "string" ? number.replace(/\D/g, "") : "";
-    return normalizedNumber ? `https://wa.me/${normalizedNumber}` : null;
+    return normalizedNumber
+      ? `https://wa.me/${normalizedNumber}?text=${encodeURIComponent(message)}`
+      : null;
   }
 
   if (platform === "email") {

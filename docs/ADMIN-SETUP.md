@@ -35,6 +35,8 @@ atau secret key. Akses tulis dilindungi login admin, RLS, dan Storage policies.
 
 - **Menu & Harga:** isi nama, kategori, deskripsi, harga, foto opsional, lalu centang
   “Tampilkan di website” bila siap dipublikasikan.
+- Setiap menu tersedia memiliki tombol **Order Now** yang membuka WhatsApp dengan
+  pesan pesanan yang sudah diisi otomatis.
 - **Galeri:** pilih foto, tulis deskripsi bila perlu, lalu centang publikasi.
 - Format gambar: JPG, PNG, WebP, atau AVIF; maksimal 5 MB.
 - Foto di bucket publik dapat dilihat pengunjung website; jangan unggah gambar pribadi.
