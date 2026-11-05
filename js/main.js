@@ -283,25 +283,18 @@ function renderBusinessDetails() {
     }
   }
 
-  const whatsappLink = document.querySelector("[data-whatsapp-link]");
-  const whatsappPlaceholder = document.querySelector("[data-whatsapp-placeholder]");
-  const whatsappUrl = getSocialDestination("whatsapp");
   const mapLink = document.querySelector("[data-map-link]");
-  const mapUrl = businessConfig.googleMapsUrl;
+  const mapUrl = isHttpUrl(businessConfig.googleMapsUrl)
+    ? businessConfig.googleMapsUrl.trim()
+    : businessConfig.address
+      ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(businessConfig.address)}`
+      : null;
 
-  if (mapLink instanceof HTMLAnchorElement && isHttpUrl(mapUrl)) {
+  if (mapLink instanceof HTMLAnchorElement && mapUrl) {
     mapLink.href = mapUrl;
     mapLink.target = "_blank";
     mapLink.rel = "noopener noreferrer";
     mapLink.hidden = false;
-  }
-
-  if (whatsappLink instanceof HTMLAnchorElement && whatsappUrl) {
-    whatsappLink.href = whatsappUrl;
-    whatsappLink.target = "_blank";
-    whatsappLink.rel = "noopener noreferrer";
-    whatsappLink.hidden = false;
-    whatsappPlaceholder?.setAttribute("hidden", "");
   }
 }
 

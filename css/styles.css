@@ -36,7 +36,7 @@
 }
 
 html {
-  min-width: 320px;
+  min-width: 0;
   scroll-behavior: smooth;
 }
 
@@ -737,75 +737,6 @@ img {
   line-height: 1.6;
 }
 
-.story-social {
-  margin-top: 2.2rem;
-}
-
-.story-social__heading {
-  margin-bottom: 0.85rem;
-  color: var(--color-accent);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-}
-
-.story-social__list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.story-social__item {
-  display: flex;
-  min-width: 0;
-  align-items: flex-start;
-  gap: 0.7rem;
-  padding: 0.8rem;
-  border: 1px solid rgb(89 68 55 / 78%);
-  border-radius: var(--border-radius-medium);
-  background: rgb(23 19 17 / 30%);
-}
-
-.story-social__icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  flex: 0 0 auto;
-  color: var(--color-accent);
-}
-
-.story-social__body {
-  display: grid;
-  min-width: 0;
-  gap: 0.2rem;
-}
-
-.story-social__name {
-  color: var(--color-cream);
-  font-size: 0.78rem;
-  font-weight: 600;
-}
-
-.story-social__link,
-.story-social__placeholder {
-  color: var(--color-muted);
-  font-size: 0.67rem;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-
-.story-social__link {
-  width: fit-content;
-  color: var(--color-accent);
-  transition: color var(--transition-duration-fast) var(--transition-easing);
-}
-
-.story-social__link:hover {
-  color: var(--color-cream);
-}
-
 .menu-section {
   background:
     radial-gradient(ellipse at 85% 12%, rgb(91 53 31 / 14%), transparent 31%),
@@ -1092,21 +1023,27 @@ img {
 
 .contact-panel__details {
   display: grid;
-  align-content: center;
-  gap: 1.35rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 
 .contact-detail {
-  padding-bottom: 1.1rem;
-  border-bottom: 1px solid rgb(89 68 55 / 82%);
+  min-width: 0;
+  padding: 0.9rem;
+  border: 1px solid rgb(89 68 55 / 82%);
+  border-radius: var(--border-radius-medium);
+  background: rgb(23 19 17 / 28%);
 }
 
-.contact-detail:last-child {
-  padding-bottom: 0;
-  border-bottom: 0;
+.contact-detail__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-bottom: 0.65rem;
+  color: var(--color-accent);
 }
 
 .contact-detail__label {
+  display: block;
   color: var(--color-accent);
   font-size: 0.6rem;
   font-weight: 600;
@@ -1120,6 +1057,7 @@ img {
   color: var(--color-cream);
   font-size: 0.83rem;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .contact-detail__value {

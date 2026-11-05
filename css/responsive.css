@@ -264,10 +264,6 @@
     gap: 2rem;
   }
 
-  .story-social__list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
   .story__visual {
     min-height: 26rem;
   }
@@ -300,18 +296,7 @@
 
   .contact-panel__details {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .contact-detail {
-    padding-right: 0.8rem;
-    border-right: 1px solid rgb(89 68 55 / 82%);
-    border-bottom: 0;
-  }
-
-  .contact-detail:last-child {
-    padding-right: 0;
-    border-right: 0;
+    gap: 0.75rem;
   }
 
   .site-footer__inner {
@@ -330,20 +315,6 @@
 
   .story__layout {
     gap: 1.25rem;
-  }
-
-  .story-social__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .story-social__item {
-    gap: 0.55rem;
-    padding: 0.7rem 0.6rem;
-  }
-
-  .story-social__placeholder,
-  .story-social__link {
-    font-size: 0.62rem;
   }
 
   .story__visual {
@@ -448,21 +419,17 @@
   }
 
   .contact-panel__details {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
   }
 
-  .contact-detail,
-  .contact-detail:last-child {
-    padding-right: 0;
-    padding-bottom: 1rem;
-    border-right: 0;
-    border-bottom: 1px solid rgb(89 68 55 / 82%);
+  .contact-detail {
+    padding: 0.75rem;
   }
 
-  .contact-detail:last-child {
-    padding-bottom: 0;
-    border-bottom: 0;
+  .contact-detail__value,
+  .contact-detail__link {
+    font-size: 0.72rem;
   }
 
   .site-footer__inner {
@@ -470,6 +437,16 @@
     justify-content: center;
     gap: 1.25rem;
     padding-block: 1.75rem;
+  }
+
+  @media (max-width: 359px) {
+    .hero__artwork {
+      width: 100%;
+    }
+
+    .contact-panel__details {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   .site-footer__nav {
