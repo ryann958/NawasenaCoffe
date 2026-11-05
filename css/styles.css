@@ -638,62 +638,17 @@ img {
   box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 35%);
 }
 
-.story__visual-frame {
+.story__visual-photo {
   position: relative;
-  display: grid;
-  width: min(74%, 20rem);
-  aspect-ratio: 0.82;
-  place-items: center;
+  z-index: 1;
+  display: block;
+  width: min(78%, 21rem);
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   border: 1px solid rgb(243 229 210 / 16%);
-  border-radius: 48% 48% 0.6rem 0.6rem;
-  background:
-    radial-gradient(ellipse at 50% 45%, rgb(197 138 82 / 25%), transparent 54%),
-    linear-gradient(155deg, #4a3023, #211713 72%);
+  border-radius: 1rem;
+  object-fit: cover;
   box-shadow: 0 2.5rem 5rem rgb(0 0 0 / 32%);
-}
-
-.story__visual-frame::before,
-.story__visual-frame::after {
-  position: absolute;
-  width: 70%;
-  height: 70%;
-  border: 1px solid rgb(197 138 82 / 16%);
-  border-radius: 50%;
-  content: "";
-}
-
-.story__visual-frame::after {
-  width: 46%;
-  height: 46%;
-  border-color: rgb(197 138 82 / 22%);
-}
-
-.story__frame-label,
-.story__frame-caption {
-  position: absolute;
-  z-index: 1;
-  color: rgb(243 229 210 / 65%);
-  font-size: 0.55rem;
-  letter-spacing: 0.16em;
-}
-
-.story__frame-label {
-  top: 16%;
-}
-
-.story__frame-caption {
-  bottom: 12%;
-}
-
-.story__frame-mark {
-  z-index: 1;
-  color: rgb(243 229 210 / 84%);
-  font-family: var(--font-heading);
-  font-size: clamp(7rem, 15vw, 11rem);
-  font-style: italic;
-  line-height: 1;
-  text-shadow: 0 0 3rem rgb(197 138 82 / 36%);
 }
 
 .story__visual-index {

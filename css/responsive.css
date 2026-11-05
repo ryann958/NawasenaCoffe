@@ -268,12 +268,8 @@
     min-height: 26rem;
   }
 
-  .story__visual-frame {
-    width: min(70%, 18rem);
-  }
-
-  .story__frame-mark {
-    font-size: clamp(8rem, 24vw, 10rem);
+  .story__visual-photo {
+    width: min(74%, 19rem);
   }
 
   .story__visual-index {
@@ -321,13 +317,8 @@
     min-height: 21rem;
   }
 
-  .story__visual-frame {
-    width: min(70%, 15rem);
-  }
-
-  .story__frame-label,
-  .story__frame-caption {
-    font-size: 0.48rem;
+  .story__visual-photo {
+    width: min(76%, 17rem);
   }
 
   .story__visual-index {
