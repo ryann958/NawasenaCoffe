@@ -10,6 +10,6 @@ try {
     window.location.replace("/admin/dashboard");
   }
 } catch (error) {
-  status.textContent = error instanceof Error ? error.message : "Admin belum dapat dimuat.";
-  status.classList.add("admin-message--error");
+  status.textContent = "Silakan masuk ke halaman login admin.";
+  window.location.replace("/admin/login");
 }

@@ -4,7 +4,6 @@ import { galleryItems } from "./gallery-data.js";
 import { getOptionalSupabaseClient } from "./services/supabase-client.js";
 
 const appRoot = document.querySelector("[data-app-root]");
-const activeBusinessConfig = { ...businessConfig };
 let scrollRevealObserver;
 
 if (appRoot) {
@@ -176,18 +175,18 @@ function renderGallery(container, items) {
 
 function renderBusinessDetails() {
   const address = document.querySelector("[data-business-address]");
-  if (address && activeBusinessConfig.address) {
-    address.textContent = activeBusinessConfig.address;
+  if (address && businessConfig.address) {
+    address.textContent = businessConfig.address;
   }
 
   const openingHours = document.querySelector("[data-opening-hours]");
-  if (openingHours && activeBusinessConfig.openingHours) {
-    if (Array.isArray(activeBusinessConfig.openingHours)) {
-      openingHours.textContent = activeBusinessConfig.openingHours.join(" · ");
-    } else if (typeof activeBusinessConfig.openingHours === "string") {
-      openingHours.textContent = activeBusinessConfig.openingHours;
+  if (openingHours && businessConfig.openingHours) {
+    if (Array.isArray(businessConfig.openingHours)) {
+      openingHours.textContent = businessConfig.openingHours.join(" · ");
+    } else if (typeof businessConfig.openingHours === "string") {
+      openingHours.textContent = businessConfig.openingHours;
     } else {
-      openingHours.textContent = Object.entries(activeBusinessConfig.openingHours)
+      openingHours.textContent = Object.entries(businessConfig.openingHours)
         .map(([day, hours]) => `${day}: ${hours}`)
         .join(" · ");
     }
@@ -197,7 +196,7 @@ function renderBusinessDetails() {
   const whatsappPlaceholder = document.querySelector("[data-whatsapp-placeholder]");
   const whatsappUrl = getSocialDestination("whatsapp");
   const mapLink = document.querySelector("[data-map-link]");
-  const mapUrl = activeBusinessConfig.googleMapsUrl;
+  const mapUrl = businessConfig.googleMapsUrl;
 
   if (mapLink instanceof HTMLAnchorElement && isHttpUrl(mapUrl)) {
     mapLink.href = mapUrl;
@@ -248,22 +247,22 @@ function renderSocialLinks() {
 
 function getSocialDestination(platform) {
   if (platform === "whatsapp") {
-    const number = activeBusinessConfig.whatsappNumber;
+    const number = businessConfig.whatsappNumber;
     const normalizedNumber = typeof number === "string" ? number.replace(/\D/g, "") : "";
     return normalizedNumber ? `https://wa.me/${normalizedNumber}` : null;
   }
 
   if (platform === "email") {
-    const address = activeBusinessConfig.emailAddress;
+    const address = businessConfig.emailAddress;
     return typeof address === "string" && address.trim()
       ? `mailto:${address.trim()}`
       : null;
   }
 
   const url = platform === "instagram"
-    ? activeBusinessConfig.instagramUrl
+    ? businessConfig.instagramUrl
     : platform === "facebook"
-      ? activeBusinessConfig.facebookUrl
+      ? businessConfig.facebookUrl
       : null;
 
   return typeof url === "string" && /^https:\/\/\S+$/i.test(url.trim())
@@ -281,38 +280,28 @@ async function loadPublishedContent() {
     const results = await Promise.allSettled([
       fetchPublishedRows(client, "menu_items", "display_order"),
       fetchPublishedRows(client, "gallery_items", "display_order"),
-      fetchPublishedSingleton(client, "store_settings"),
-      fetchPublishedSingleton(client, "website_settings"),
     ]);
 
-    const [menuResult, galleryResult, storeResult, websiteResult] = results;
-    if (menuResult.status === "fulfilled" && menuResult.value) {
-      const items = await addPublicImageUrls(client, menuResult.value);
-      renderMenu(document.querySelector("[data-menu-grid]"), items.map((item) => ({
+    const [menuResult, galleryResult] = results;
+    if (menuResult.status === "fulfilled") {
+      renderMenu(document.querySelector("[data-menu-grid]"), menuResult.value.map((item) => ({
         id: item.id,
         name: item.name,
         category: item.category,
         description: item.description,
         price: Number(item.price),
-        image: item.publicImage,
+        image: getPublicImageUrl(client, item.image_path),
         available: item.is_available,
       })));
     }
-    if (galleryResult.status === "fulfilled" && galleryResult.value) {
-      const items = await addPublicImageUrls(client, galleryResult.value);
-      renderGallery(document.querySelector("[data-gallery-grid]"), items.map((item) => ({
-        imagePath: item.publicImage,
+    if (galleryResult.status === "fulfilled") {
+      renderGallery(document.querySelector("[data-gallery-grid]"), galleryResult.value.map((item) => ({
+        imagePath: getPublicImageUrl(client, item.image_path),
         altText: item.alt_text,
         category: item.category,
         caption: item.caption,
         displayOrder: item.display_order,
-      })).filter((item) => item.imagePath));
-    }
-    if (storeResult.status === "fulfilled" && storeResult.value) {
-      applyStoreSettings(storeResult.value);
-    }
-    if (websiteResult.status === "fulfilled" && websiteResult.value) {
-      applyWebsiteSettings(websiteResult.value);
+      })));
     }
 
     for (const result of results) {
@@ -339,115 +328,9 @@ async function fetchPublishedRows(client, table, orderColumn) {
   return data || [];
 }
 
-async function fetchPublishedSingleton(client, table) {
-  const { data, error } = await client
-    .from(table)
-    .select("*")
-    .eq("id", true)
-    .eq("is_published", true)
-    .maybeSingle();
-  if (error) {
-    throw error;
-  }
-  return data;
-}
-
-async function addPublicImageUrls(client, items) {
-  return Promise.all(items.map(async (item) => {
-    if (!item.image_path) {
-      return { ...item, publicImage: null };
-    }
-    const { data, error } = await client.storage
-      .from("nawasena-content")
-      .createSignedUrl(item.image_path, 3600);
-    if (error) {
-      console.error("Gambar konten publik tidak dapat dimuat:", error);
-      return { ...item, publicImage: null };
-    }
-    return { ...item, publicImage: data.signedUrl };
-  }));
-}
-
-function applyStoreSettings(settings) {
-  Object.assign(activeBusinessConfig, {
-    address: settings.address,
-    openingHours: settings.opening_hours,
-    whatsappNumber: settings.whatsapp_number,
-    emailAddress: settings.email,
-    googleMapsUrl: settings.map_url,
-    instagramUrl: settings.instagram_url,
-    facebookUrl: settings.facebook_url,
-  });
-  if (settings.store_name) {
-    document.querySelectorAll("[data-brand-name], [data-footer-brand]").forEach((element) => {
-      element.textContent = settings.store_name;
-    });
-  }
-  if (settings.description) {
-    const story = document.querySelector(".story__description");
-    if (story) {
-      story.textContent = settings.description;
-    }
-  }
-  renderBusinessDetails();
-  renderSocialLinks();
-}
-
-function applyWebsiteSettings(settings) {
-  if (settings.hero_eyebrow) {
-    const eyebrow = document.querySelector(".hero__eyebrow-text");
-    if (eyebrow) eyebrow.textContent = settings.hero_eyebrow;
-  }
-  if (settings.hero_title) {
-    const lines = document.querySelectorAll(".hero__title-text");
-    const parts = settings.hero_title.split(/\r?\n/);
-    if (lines[0]) lines[0].textContent = parts[0];
-    if (lines[1]) lines[1].textContent = parts.slice(1).join(" ");
-  }
-  if (settings.hero_description) {
-    const description = document.querySelector(".hero__description");
-    if (description) description.textContent = settings.hero_description;
-  }
-  if (settings.about_title) {
-    const title = document.querySelector("#story-title");
-    if (title) {
-      const parts = settings.about_title.split(/\r?\n/);
-      const accentLine = title.querySelector("span");
-      if (accentLine) {
-        title.childNodes[0].textContent = parts[0];
-        accentLine.textContent = parts.slice(1).join(" ");
-      } else {
-        title.textContent = settings.about_title;
-      }
-    }
-  }
-  const story = document.querySelector(".story__description");
-  const aboutCopy = [settings.about_description, settings.coffee_philosophy]
-    .filter(Boolean)
-    .join("\n\n");
-  if (story && aboutCopy) {
-    story.textContent = aboutCopy;
-    story.style.whiteSpace = "pre-line";
-  }
-
-  if (settings.footer_description) {
-    const footer = document.querySelector("[data-footer-description]");
-    if (footer) {
-      footer.textContent = settings.footer_description;
-      footer.hidden = false;
-    }
-  }
-  if (settings.seo_title) document.title = settings.seo_title;
-  if (settings.seo_title) {
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.content = settings.seo_title;
-  }
-  if (settings.seo_description) {
-    const description = document.querySelector('meta[name="description"]');
-    if (description) description.content = settings.seo_description;
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) ogDescription.content = settings.seo_description;
-  }
+function getPublicImageUrl(client, imagePath) {
+  if (!imagePath) return null;
+  return client.storage.from("nawasena-content").getPublicUrl(imagePath).data.publicUrl;
 }
 
 function initializeScrollReveal() {

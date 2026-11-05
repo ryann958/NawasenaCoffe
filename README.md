@@ -17,9 +17,10 @@ python -m http.server 8000
 Then open `http://localhost:8000`. This serves static files only; the project has
 no application backend or build step.
 
-## Admin dashboard deployment
+## Admin dashboard
 
-The admin dashboard is hosted with the site on Vercel and uses Supabase for
-authentication, data, and image storage. See [docs/ADMIN-SETUP.md](docs/ADMIN-SETUP.md)
-for Supabase setup, required Vercel environment variables, and secure admin provisioning.
-Do not commit `.env` files or Supabase service-role keys.
+The simple admin dashboard lets an authorized user manage menu items and gallery photos.
+It uses Supabase Auth, Database, and Storage directly from the browser; it does not need
+Vercel environment variables or serverless functions. See
+[docs/ADMIN-SETUP.md](docs/ADMIN-SETUP.md) for the one-time setup. Never put a Supabase
+service-role or secret key in frontend code.

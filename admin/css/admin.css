@@ -195,6 +195,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .admin-records { display: grid; }
 .admin-record__title { font-size: 0.85rem; font-weight: 600; }
 .admin-record__meta { display: block; margin-top: 0.2rem; }
+.admin-record__image { display: block; width: 4.5rem; height: 3.5rem; margin-bottom: 0.55rem; border: 1px solid var(--admin-border); border-radius: 0.45rem; object-fit: cover; }
 .admin-record__actions { display: flex; flex: 0 0 auto; gap: 0.45rem; }
 .admin-record__actions .admin-button { min-height: 2.2rem; padding: 0.45rem 0.65rem; font-size: 0.7rem; }
 .admin-resource-form { display: grid; gap: 0.9rem; }

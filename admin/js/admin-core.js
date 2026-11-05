@@ -71,17 +71,14 @@ export async function uploadImage(client, file, folder, id) {
   return path;
 }
 
-export async function createImagePreview(client, imagePath) {
+export function createImagePreview(client, imagePath) {
   if (!imagePath) {
     return "";
   }
-  const { data, error } = await client.storage
+  const { data } = client.storage
     .from("nawasena-content")
-    .createSignedUrl(imagePath, 300);
-  if (error) {
-    throw error;
-  }
-  return data.signedUrl;
+    .getPublicUrl(imagePath);
+  return data.publicUrl;
 }
 
 export async function removeImage(client, imagePath) {
