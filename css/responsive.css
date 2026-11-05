@@ -402,22 +402,16 @@
     gap: 1rem;
   }
 
-  .menu-card__visual {
-    aspect-ratio: 1.5;
+  .gallery-grid {
+    overflow-x: auto;
   }
 
-  .gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: 9rem;
+  .gallery-track__group {
     gap: 0.65rem;
   }
 
-  .gallery-card:nth-child(4n + 1) {
-    grid-row: span 2;
-  }
-
-  .gallery-card:nth-child(4n + 2) {
-    grid-column: span 1;
+  .gallery-card {
+    flex-basis: min(78vw, 20rem);
   }
 
   .contact-panel {

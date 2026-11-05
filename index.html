@@ -264,6 +264,18 @@
               Menu sedang disiapkan. Silakan kembali untuk melihat pilihan terbaru.
             </p>
           </div>
+          <div class="menu-more" hidden>
+            <button
+              class="button"
+              type="button"
+              data-menu-toggle
+              aria-controls="menu-items"
+              aria-expanded="false"
+              hidden
+            >
+              Lihat semua menu
+            </button>
+          </div>
         </div>
       </section>
 
@@ -284,10 +296,22 @@
             </p>
           </div>
 
-          <div class="gallery-grid" data-gallery-grid aria-live="polite">
-            <p class="content-empty-state">
-              Galeri akan ditampilkan setelah foto resmi tersedia.
-            </p>
+          <div class="gallery-carousel">
+            <div class="gallery-grid" data-gallery-grid aria-label="Galeri foto" tabindex="0">
+              <p class="content-empty-state">
+                Galeri akan ditampilkan setelah foto resmi tersedia.
+              </p>
+            </div>
+            <button
+              class="button gallery-motion-toggle"
+              type="button"
+              data-gallery-motion-toggle
+              aria-controls="gallery-track"
+              aria-pressed="false"
+              hidden
+            >
+              Jeda gerak galeri
+            </button>
           </div>
         </div>
       </section>

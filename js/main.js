@@ -57,10 +57,19 @@ if (appRoot) {
     renderMenu(menuGrid, menuItems);
   }
 
+  const menuToggle = document.querySelector("[data-menu-toggle]");
+  menuToggle?.addEventListener("click", () => {
+    const isExpanded = menuToggle.getAttribute("aria-expanded") !== "true";
+    menuToggle.setAttribute("aria-expanded", String(isExpanded));
+    menuToggle.textContent = isExpanded ? "Tampilkan lebih sedikit" : "Lihat semua menu";
+    menuGrid?.classList.toggle("menu-grid--collapsed", !isExpanded);
+  });
+
   const galleryGrid = document.querySelector("[data-gallery-grid]");
   if (galleryGrid) {
     renderGallery(galleryGrid, galleryItems);
   }
+  initializeGalleryMotion();
 
   renderBusinessDetails();
   renderSocialLinks();
@@ -85,6 +94,7 @@ function renderMenu(container, items) {
   }
 
   container.replaceChildren();
+  container.id = "menu-items";
   const formatter = new Intl.NumberFormat(businessConfig.defaultLanguage, {
     style: "currency",
     currency: businessConfig.currency,
@@ -105,7 +115,7 @@ function renderMenu(container, items) {
       image.src = item.image;
       image.alt = "";
       image.width = 640;
-      image.height = 480;
+      image.height = 800;
       image.loading = "lazy";
       image.decoding = "async";
       visual.append(image);
@@ -142,6 +152,19 @@ function renderMenu(container, items) {
     card.append(visual, body);
     container.append(card);
   });
+
+  const menuToggle = document.querySelector("[data-menu-toggle]");
+  const menuMore = menuToggle?.parentElement;
+  const hasMoreItems = items.length > 6;
+  container.classList.toggle("menu-grid--collapsed", hasMoreItems);
+  if (menuToggle instanceof HTMLButtonElement) {
+    menuToggle.hidden = !hasMoreItems;
+    if (menuMore instanceof HTMLElement) {
+      menuMore.hidden = !hasMoreItems;
+    }
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.textContent = "Lihat semua menu";
+  }
 }
 
 function renderGallery(container, items) {
@@ -150,9 +173,9 @@ function renderGallery(container, items) {
   }
 
   container.replaceChildren();
-  [...items]
+  const orderedItems = [...items]
     .sort((first, second) => first.displayOrder - second.displayOrder)
-    .forEach((item, index) => {
+    .map((item, index) => {
       const figure = document.createElement("figure");
       figure.className = "gallery-card reveal";
       figure.dataset.stagger = String(index);
@@ -169,8 +192,76 @@ function renderGallery(container, items) {
       caption.className = "gallery-card__caption";
       caption.textContent = item.caption;
       figure.append(image, caption);
-      container.append(figure);
+      return figure;
     });
+
+  const track = document.createElement("div");
+  track.className = "gallery-track";
+  track.id = "gallery-track";
+  track.style.setProperty("--gallery-duration", `${Math.max(orderedItems.length * 6, 18)}s`);
+  if (orderedItems.length < 2) {
+    track.classList.add("gallery-track--static");
+  }
+
+  const copies = orderedItems.length > 1 ? 2 : 1;
+  for (let copy = 0; copy < copies; copy += 1) {
+    const group = document.createElement("div");
+    group.className = "gallery-track__group";
+    group.setAttribute("role", "list");
+    if (copy > 0) {
+      group.setAttribute("aria-hidden", "true");
+    }
+
+    orderedItems.forEach((item) => {
+      const card = copy === 0 ? item : item.cloneNode(true);
+      card.removeAttribute("data-stagger");
+      if (copy > 0) {
+        card.classList.remove("reveal", "is-visible");
+      }
+      card.setAttribute("role", "listitem");
+      group.append(card);
+    });
+    track.append(group);
+  }
+
+  container.append(track);
+  const motionToggle = document.querySelector("[data-gallery-motion-toggle]");
+  if (motionToggle instanceof HTMLButtonElement) {
+    motionToggle.hidden = orderedItems.length < 2;
+  }
+}
+
+function initializeGalleryMotion() {
+  const viewport = document.querySelector("[data-gallery-grid]");
+  const toggle = document.querySelector("[data-gallery-motion-toggle]");
+  if (!(viewport instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement)) {
+    return;
+  }
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const setMotionEnabled = (enabled) => {
+    viewport.dataset.motionEnabled = String(enabled);
+    toggle.setAttribute("aria-pressed", String(enabled));
+    toggle.textContent = enabled ? "Jeda gerak galeri" : "Gerakkan galeri";
+  };
+
+  setMotionEnabled(!reducedMotion.matches);
+  toggle.addEventListener("click", () => {
+    setMotionEnabled(viewport.dataset.motionEnabled !== "true");
+  });
+  reducedMotion.addEventListener("change", (event) => {
+    setMotionEnabled(!event.matches);
+  });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      viewport.classList.toggle("is-in-view", entry.isIntersecting);
+    });
+    observer.observe(viewport);
+  } else {
+    viewport.classList.add("is-in-view");
+  }
 }
 
 function renderBusinessDetails() {
@@ -302,6 +393,7 @@ async function loadPublishedContent() {
         caption: item.caption,
         displayOrder: item.display_order,
       })));
+      initializeScrollReveal();
     }
 
     for (const result of results) {
