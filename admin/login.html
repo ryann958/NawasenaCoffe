@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Login Admin | Nawasena Coffee</title>
+    <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="./css/admin.css">
+    <script type="module" src="./js/login.js"></script>
+  </head>
+  <body class="admin-page">
+    <main class="login-layout">
+      <section class="login-card" aria-labelledby="login-title">
+        <a class="admin-brand" href="/" aria-label="Kembali ke Nawasena Coffee">
+          <span class="admin-brand__mark" aria-hidden="true">N</span>
+          <span>Nawasena Coffee</span>
+        </a>
+        <p class="admin-eyebrow">PRIVATE ADMIN AREA</p>
+        <h1 id="login-title">Selamat datang kembali.</h1>
+        <p class="admin-copy">Masuk dengan akun admin yang telah diberikan akses.</p>
+
+        <div class="admin-message" data-login-message role="status" aria-live="polite" hidden></div>
+        <form class="admin-form" data-login-form>
+          <label class="admin-field">
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="username" required>
+          </label>
+          <label class="admin-field">
+            <span>Password</span>
+            <input name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button class="admin-button admin-button--primary" type="submit" data-submit-button>
+            Masuk ke dashboard
+          </button>
+        </form>
+        <a class="admin-back-link" href="/">Kembali ke website</a>
+      </section>
+    </main>
+  </body>
+</html>

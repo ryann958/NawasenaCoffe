@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1000" viewBox="0 0 900 1000" fill="none">
+  <defs>
+    <linearGradient id="cup" x1="288" x2="599" y1="395" y2="786" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6EADC"/>
+      <stop offset=".47" stop-color="#D9C3A8"/>
+      <stop offset="1" stop-color="#A98B6B"/>
+    </linearGradient>
+    <linearGradient id="cupSide" x1="545" x2="644" y1="451" y2="696" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B79877" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#795C43" stop-opacity=".48"/>
+    </linearGradient>
+    <linearGradient id="coffee" x1="365" x2="554" y1="418" y2="481" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5A321F"/>
+      <stop offset=".5" stop-color="#281812"/>
+      <stop offset="1" stop-color="#75452B"/>
+    </linearGradient>
+    <linearGradient id="saucer" x1="251" x2="665" y1="778" y2="847" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7D6C1"/>
+      <stop offset=".54" stop-color="#B69A7B"/>
+      <stop offset="1" stop-color="#816649"/>
+    </linearGradient>
+    <filter id="shadow" width="1.4" height="1.4" x="-.2" y="-.18" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="461" cy="828" fill="#080605" opacity=".58" rx="237" ry="38" filter="url(#shadow)"/>
+  <ellipse cx="463" cy="828" fill="#080605" opacity=".58" rx="237" ry="34"/>
+  <path d="M253 781c23-31 99-53 210-53s187 22 210 53c-23 29-99 49-210 49s-187-20-210-49Z" fill="url(#saucer)" stroke="#F0DECA" stroke-opacity=".53" stroke-width="3"/>
+  <path d="M304 777c34-20 89-31 159-31s125 11 159 31c-34 19-89 29-159 29s-125-10-159-29Z" fill="#3C291D" opacity=".7"/>
+  <path d="M355 777h217" stroke="#EAD7C1" stroke-opacity=".38" stroke-width="2"/>
+
+  <path d="M589 486h37c62 0 97 41 89 94-8 57-51 92-112 90" fill="url(#cupSide)" stroke="#E5D2BB" stroke-opacity=".75" stroke-width="15"/>
+  <path d="M299 448h291l-30 277c-5 49-47 86-96 86h-40c-49 0-91-37-96-86l-29-277Z" fill="url(#cup)" stroke="#F3E5D2" stroke-opacity=".72" stroke-width="5"/>
+  <path d="M461 468h129l-29 257c-5 49-47 86-96 86h-4V468Z" fill="url(#cupSide)" opacity=".8"/>
+  <ellipse cx="444" cy="449" fill="#D6C0A5" rx="151" ry="39"/>
+  <ellipse cx="444" cy="441" fill="#F2E5D4" rx="150" ry="37"/>
+  <ellipse cx="444" cy="443" fill="url(#coffee)" rx="122" ry="25"/>
+  <path d="M375 444c21-17 50-16 69-2 15 11 36 10 52-3 16-12 34-12 50-2-14 18-48 29-91 29-38 0-67-8-80-22Z" fill="#D49A62" opacity=".88"/>
+  <path d="M382 445c18-9 36-8 52 1 13 8 28 8 41 1" stroke="#F0C78F" stroke-linecap="round" stroke-opacity=".8" stroke-width="3"/>
+  <path d="M367 508c7 99 20 169 44 210" stroke="#FFF8EC" stroke-linecap="round" stroke-opacity=".52" stroke-width="9"/>
+  <path d="M570 522c-2 64-10 122-24 167" stroke="#8E7256" stroke-linecap="round" stroke-opacity=".24" stroke-width="6"/>
+  <path d="M402 778c31 14 78 17 118 3" stroke="#F6E9D9" stroke-linecap="round" stroke-opacity=".5" stroke-width="4"/>
+</svg>

@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nawasena Coffee</title>
+    <meta
+      name="description"
+      content="Informasi resmi Nawasena Coffee akan ditambahkan setelah dikonfirmasi."
+    >
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="Nawasena Coffee">
+    <meta property="og:title" content="Nawasena Coffee">
+    <meta
+      property="og:description"
+      content="Informasi resmi Nawasena Coffee akan ditambahkan setelah dikonfirmasi."
+    >
+
+    <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <script type="module" src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="#home" aria-label="Nawasena Coffee, beranda">
+          <svg
+            class="brand__mark"
+            viewBox="0 0 40 40"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M25.2 5.9c-7.5.1-15 6.7-16.5 15-1.2 6.9 2.4 12.7 8.6 13.8 7.5 1.3 15.9-5.6 17.3-14.3 1-6.4-2.8-12-9.4-14.5Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M26.8 11.6c-3.1 3.3-6.2 8.2-8.6 13.8"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="1.5"
+            />
+          </svg>
+          <span class="brand__name" data-brand-name></span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Buka navigasi"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+          data-nav-toggle
+        >
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+        </button>
+
+        <nav class="site-nav" id="primary-navigation" aria-label="Navigasi utama" data-site-nav>
+          <a class="site-nav__link is-active" href="#home" aria-current="page">Home</a>
+          <a class="site-nav__link" href="#about">About</a>
+          <a class="site-nav__link" href="#menu">Menu</a>
+          <a class="site-nav__link" href="#gallery">Gallery</a>
+          <a class="site-nav__link" href="#contact">Contact</a>
+        </nav>
+
+        <a class="header-cta" href="#contact">
+          <span>Contact Us</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M4 10h11m-4-4 4 4-4 4" />
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <main id="app" data-app-root>
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero__ambient hero__ambient--left" aria-hidden="true"></div>
+        <div class="hero__ambient hero__ambient--right" aria-hidden="true"></div>
+
+        <div class="hero__inner container">
+          <div class="hero__content">
+            <p class="hero__eyebrow">
+              <span class="hero__eyebrow-line" aria-hidden="true"></span>
+              <span class="hero__eyebrow-text">A LITTLE PAUSE, WELL SPENT</span>
+            </p>
+            <h1 class="hero__title" id="hero-title">
+              <span class="hero__title-line">
+                <span class="hero__title-text">A Little Moment,</span>
+              </span>
+              <span class="hero__title-line">
+                <span class="hero__title-text hero__title-text--accent">A Better Cup.</span>
+              </span>
+            </h1>
+            <p class="hero__description">
+              Take a breath, settle in, and make room for a good moment.
+            </p>
+            <div class="hero__actions">
+              <a class="button hero__button" href="#menu">
+                <span>Explore Menu</span>
+                <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                  <path d="M4 10h11m-4-4 4 4-4 4" />
+                </svg>
+              </a>
+              <a class="hero__text-link" href="#contact">
+                Contact Us
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div class="hero__signature" aria-hidden="true">
+              <span class="hero__signature-rule"></span>
+              <span>GOOD MOMENTS, MADE SLOW</span>
+            </div>
+          </div>
+
+          <div class="hero__visual" aria-label="Ilustrasi kopi susu dingin dengan percikan dan biji kopi">
+            <div class="hero__visual-glow" aria-hidden="true"></div>
+            <img
+              class="hero__artwork"
+              src="./assets/images/hero/nawasena-iced-coffee.png"
+              width="768"
+              height="785"
+              alt="Gelas kopi susu dingin dengan percikan kopi dan biji kopi tanpa tulisan"
+              fetchpriority="high"
+              decoding="async"
+            >
+            <span class="hero__visual-caption" aria-hidden="true">
+              <span class="hero__caption-dot"></span>
+              YOUR MOMENT, YOUR WAY
+            </span>
+          </div>
+        </div>
+        <a class="hero__scroll" href="#menu" aria-label="Lihat menu">
+          <span>SCROLL TO EXPLORE</span>
+          <span class="hero__scroll-line" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <section class="story section-space" id="about" aria-labelledby="story-title">
+        <div class="container story__layout">
+          <div class="story__visual reveal" aria-hidden="true">
+            <div class="story__orb story__orb--large" data-scroll-parallax="0.06"></div>
+            <div class="story__orb story__orb--small" data-scroll-parallax="0.1"></div>
+            <div class="story__visual-frame" data-scroll-parallax="0.12">
+              <span class="story__frame-label">A MOMENT TO SLOW DOWN</span>
+              <span class="story__frame-mark">N</span>
+              <span class="story__frame-caption">NAWASENA COFFEE</span>
+            </div>
+            <span class="story__visual-index">01 / OUR STORY</span>
+          </div>
+
+          <div class="story__content">
+            <p class="section-eyebrow reveal">
+              <span class="section-eyebrow__line" aria-hidden="true"></span>
+              THE THOUGHT BEHIND THE CUP
+            </p>
+            <h2 class="section-title reveal" id="story-title">
+              A space to pause,<br>
+              <span>and be present.</span>
+            </h2>
+            <p class="story__description reveal">
+              Sebuah jeda kecil memberi ruang untuk menikmati kopi, berbagi cerita, atau sekadar
+              menikmati waktu. Filosofi dan cerita resmi Nawasena Coffee dapat ditambahkan di sini
+              setelah dikonfirmasi.
+            </p>
+            <div class="story__principles" aria-label="Nilai suasana">
+              <article class="principle-card reveal">
+                <span class="principle-card__number">01</span>
+                <h3>A slower moment</h3>
+                <p>Ruang untuk menarik napas dan menikmati waktu.</p>
+              </article>
+              <article class="principle-card reveal">
+                <span class="principle-card__number">02</span>
+                <h3>Good company</h3>
+                <p>Tempat untuk bertemu, berbincang, atau sekadar singgah.</p>
+              </article>
+            </div>
+            <div class="story-social reveal" aria-label="Media sosial dan kontak Nawasena Coffee">
+              <p class="story-social__heading">TEMUKAN &amp; HUBUNGI KAMI</p>
+              <ul class="story-social__list">
+                <li class="story-social__item">
+                  <svg class="story-social__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6" />
+                    <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
+                    <circle cx="17.5" cy="6.8" r="1" fill="currentColor" />
+                  </svg>
+                  <div class="story-social__body">
+                    <span class="story-social__name">Instagram</span>
+                    <a class="story-social__link" data-social-link="instagram" hidden>Buka Instagram <span aria-hidden="true">↗</span></a>
+                    <span class="story-social__placeholder" data-social-placeholder>Link resmi akan ditambahkan setelah dikonfirmasi.</span>
+                  </div>
+                </li>
+                <li class="story-social__item">
+                  <svg class="story-social__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V3.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3h2.8v8h3.4Z" fill="currentColor" />
+                  </svg>
+                  <div class="story-social__body">
+                    <span class="story-social__name">Facebook</span>
+                    <a class="story-social__link" data-social-link="facebook" hidden>Buka Facebook <span aria-hidden="true">↗</span></a>
+                    <span class="story-social__placeholder" data-social-placeholder>Link resmi akan ditambahkan setelah dikonfirmasi.</span>
+                  </div>
+                </li>
+                <li class="story-social__item">
+                  <svg class="story-social__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6" />
+                    <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" />
+                  </svg>
+                  <div class="story-social__body">
+                    <span class="story-social__name">Email</span>
+                    <a class="story-social__link" data-social-link="email" hidden>Kirim email <span aria-hidden="true">↗</span></a>
+                    <span class="story-social__placeholder" data-social-placeholder>Alamat email akan ditambahkan setelah dikonfirmasi.</span>
+                  </div>
+                </li>
+                <li class="story-social__item">
+                  <svg class="story-social__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M20.2 11.7a8.1 8.1 0 0 1-12 7.1L4 20l1.2-4A8.1 8.1 0 1 1 20.2 11.7Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" />
+                    <path d="M9 8.2c.2-.4.4-.4.7-.4h.4c.2 0 .3.1.4.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.5.7c.2.1.4.2.4.4v.4c0 .3-.1.5-.4.7-.5.3-1.2.5-1.9.4-1.1-.2-2.4-.9-3.6-2.1-1.2-1.2-1.9-2.5-2.1-3.6-.1-.7.1-1.4.4-1.9Z" fill="currentColor" />
+                  </svg>
+                  <div class="story-social__body">
+                    <span class="story-social__name">WhatsApp</span>
+                    <a class="story-social__link" data-social-link="whatsapp" hidden>Chat WhatsApp <span aria-hidden="true">↗</span></a>
+                    <span class="story-social__placeholder" data-social-placeholder>Kontak resmi akan ditambahkan setelah dikonfirmasi.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section section-space" id="menu" aria-labelledby="menu-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <p class="section-eyebrow">
+                <span class="section-eyebrow__line" aria-hidden="true"></span>
+                SIGNATURE MENU
+              </p>
+              <h2 class="section-title" id="menu-title">
+                A cup for <span>your moment.</span>
+              </h2>
+            </div>
+            <p class="section-heading__note" data-scroll-parallax="0.08">
+              Pilihan menu dan harga resmi akan ditampilkan setelah dikonfirmasi.
+            </p>
+          </div>
+
+          <div class="menu-grid" data-menu-grid aria-live="polite">
+            <p class="content-empty-state">
+              Menu sedang disiapkan. Silakan kembali untuk melihat pilihan terbaru.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery-section section-space" id="gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <p class="section-eyebrow">
+                <span class="section-eyebrow__line" aria-hidden="true"></span>
+                AROUND THE TABLE
+              </p>
+              <h2 class="section-title" id="gallery-title">
+                Little moments, <span>together.</span>
+              </h2>
+            </div>
+            <p class="section-heading__note" data-scroll-parallax="0.08">
+              Suasana Nawasena Coffee akan hadir di sini melalui foto resmi.
+            </p>
+          </div>
+
+          <div class="gallery-grid" data-gallery-grid aria-live="polite">
+            <p class="content-empty-state">
+              Galeri akan ditampilkan setelah foto resmi tersedia.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section section-space" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="contact-panel reveal">
+            <div class="contact-panel__intro" data-scroll-parallax="0.06">
+              <p class="section-eyebrow">
+                <span class="section-eyebrow__line" aria-hidden="true"></span>
+                COME SAY HELLO
+              </p>
+              <h2 class="section-title" id="contact-title">
+                Your next good<br><span>moment starts here.</span>
+              </h2>
+              <p class="contact-panel__copy">
+                Informasi kunjungan dan kontak akan diperbarui setelah dikonfirmasi.
+              </p>
+              <a class="button contact-panel__button" href="#contact-details">
+                Contact Nawasena
+                <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+                  <path d="M4 10h11m-4-4 4 4-4 4" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="contact-panel__details" id="contact-details" data-scroll-parallax="0.08">
+              <div class="contact-detail">
+                <span class="contact-detail__label">ADDRESS</span>
+                <p class="contact-detail__value" data-business-address>
+                  Informasi alamat akan diperbarui setelah dikonfirmasi.
+                </p>
+                <a class="contact-detail__link" data-map-link hidden>
+                  Buka Google Maps
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <div class="contact-detail">
+                <span class="contact-detail__label">OPENING HOURS</span>
+                <p class="contact-detail__value" data-opening-hours>
+                  Informasi jam buka akan diperbarui setelah dikonfirmasi.
+                </p>
+              </div>
+              <div class="contact-detail contact-detail--action">
+                <span class="contact-detail__label">WHATSAPP</span>
+                <a class="contact-detail__link" data-whatsapp-link hidden>
+                  Chat with us
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <p class="contact-detail__value" data-whatsapp-placeholder>
+                  Kontak WhatsApp resmi akan ditambahkan setelah dikonfirmasi.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <a class="brand site-footer__brand" href="#home" aria-label="Nawasena Coffee, kembali ke atas">
+          <svg
+            class="brand__mark"
+            viewBox="0 0 40 40"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M25.2 5.9c-7.5.1-15 6.7-16.5 15-1.2 6.9 2.4 12.7 8.6 13.8 7.5 1.3 15.9-5.6 17.3-14.3 1-6.4-2.8-12-9.4-14.5Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M26.8 11.6c-3.1 3.3-6.2 8.2-8.6 13.8"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="1.5"
+            />
+          </svg>
+          <span class="brand__name" data-brand-name></span>
+        </a>
+        <nav class="site-footer__nav" aria-label="Navigasi footer">
+          <a href="#about">Our Story</a>
+          <a href="#menu">Menu</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <p class="site-footer__copyright">
+          © <span data-current-year></span> <span data-footer-brand></span><br>
+          <span class="site-footer__description" data-footer-description hidden></span>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+:root {
+  --transition-duration-fast: 160ms;
+  --transition-duration-standard: 240ms;
+  --transition-easing: ease-in-out;
+}
+
+.hero__eyebrow {
+  animation: hero-enter 550ms 80ms both;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero__eyebrow-text {
+  animation: hero-typewriter 1.1s 220ms steps(26, end) both;
+}
+
+.hero__title-text {
+  animation: hero-title-type 1.05s both;
+}
+
+.hero__title-line:nth-child(1) .hero__title-text {
+  animation-delay: 420ms;
+  animation-timing-function: steps(16, end);
+}
+
+.hero__title-line:nth-child(2) .hero__title-text {
+  animation-delay: 1.35s;
+  animation-timing-function: steps(13, end);
+}
+
+.hero__description {
+  animation: hero-enter 700ms 2.45s both;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero__actions {
+  animation: hero-enter 700ms 2.62s both;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero__signature {
+  animation: hero-enter 700ms 2.77s both;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero__artwork {
+  animation: hero-art-enter 950ms 100ms both;
+}
+
+.hero__ambient,
+.hero__visual-glow {
+  will-change: opacity, transform;
+}
+
+.has-scroll-reveal .reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+
+.has-scroll-reveal .reveal.is-visible {
+  animation: scroll-reveal 650ms var(--reveal-delay, 0ms) both;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes scroll-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1.1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-typewriter {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes hero-title-type {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.35;
+    transform: translateY(0.16em);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-art-enter {
+  from {
+    transform: translateY(1rem) scale(0.97);
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .has-scroll-reveal .reveal:not(.is-visible) {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero__eyebrow,
+  .hero__eyebrow-text,
+  .hero__title-text,
+  .hero__description,
+  .hero__actions,
+  .hero__signature,
+  .hero__artwork {
+    animation: none !important;
+  }
+
+  .hero__title-text,
+  .hero__eyebrow-text,
+  .hero__description,
+  .hero__actions {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero__eyebrow-text {
+    clip-path: none;
+  }
+
+  .hero__ambient,
+  .hero__visual-glow,
+  .hero__artwork,
+  .hero__visual-caption {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    will-change: auto;
+  }
+
+  .hero::before,
+  .hero::after {
+    opacity: 1;
+  }
+}
