@@ -339,8 +339,7 @@ function initializeScrollReveal() {
     return;
   }
 
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reducedMotion || !("IntersectionObserver" in window)) {
+  if (!("IntersectionObserver" in window)) {
     revealElements.forEach((element) => element.classList.add("is-visible"));
     return;
   }
@@ -391,32 +390,30 @@ function initializeHeroScrollAtmosphere() {
 
   const updateAtmosphere = () => {
     animationFrame = 0;
-    if (reducedMotion.matches) {
-      return;
-    }
 
     const scrollRange = Math.max(heroHeight * 1.05, viewportHeight * 0.95);
     const progress = Math.min(
       1,
       Math.max(0, (window.scrollY - heroDocumentTop) / scrollRange),
     );
+    const motionScale = reducedMotion.matches ? 0.4 : 1;
 
     hero.style.setProperty("--hero-effects-opacity", String(1 - progress));
     hero.style.setProperty("--hero-glow-opacity", String(1 - progress * 0.78));
-    hero.style.setProperty("--hero-effects-rise", `${progress * -20}px`);
+    hero.style.setProperty("--hero-effects-rise", `${progress * -20 * motionScale}px`);
     hero.style.setProperty("--hero-effects-scale", String(1 - progress * 0.08));
 
     if (artwork instanceof HTMLImageElement) {
       const compactLayout = window.innerWidth <= 899;
-      const parallaxDistance = compactLayout ? 88 : Math.min(176, viewportHeight * 0.2);
-      const scaleIncrease = compactLayout ? 0.12 : 0.2;
+      const parallaxDistance = (compactLayout ? 88 : Math.min(176, viewportHeight * 0.2)) * motionScale;
+      const scaleIncrease = (compactLayout ? 0.12 : 0.2) * motionScale;
       artwork.style.setProperty("--hero-artwork-parallax-y", `${progress * parallaxDistance}px`);
       artwork.style.setProperty("--hero-artwork-parallax-scale", String(1 + progress * scaleIncrease));
     }
   };
 
   const scheduleUpdate = () => {
-    if (!reducedMotion.matches && !animationFrame) {
+    if (!animationFrame) {
       animationFrame = window.requestAnimationFrame(updateAtmosphere);
     }
   };
@@ -426,31 +423,7 @@ function initializeHeroScrollAtmosphere() {
     scheduleUpdate();
   };
 
-  const stopTracking = () => {
-    window.removeEventListener("scroll", scheduleUpdate);
-    window.removeEventListener("resize", measureAndUpdate);
-    window.removeEventListener("pageshow", measureAndUpdate);
-    if (animationFrame) {
-      window.cancelAnimationFrame(animationFrame);
-      animationFrame = 0;
-    }
-  };
-
-  const clearAtmosphere = () => {
-    hero.style.removeProperty("--hero-effects-opacity");
-    hero.style.removeProperty("--hero-glow-opacity");
-    hero.style.removeProperty("--hero-effects-rise");
-    hero.style.removeProperty("--hero-effects-scale");
-    artwork?.style.removeProperty("--hero-artwork-parallax-y");
-    artwork?.style.removeProperty("--hero-artwork-parallax-scale");
-  };
-
   const startTracking = () => {
-    if (reducedMotion.matches) {
-      clearAtmosphere();
-      return;
-    }
-
     measureHero();
     updateAtmosphere();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
@@ -460,15 +433,7 @@ function initializeHeroScrollAtmosphere() {
 
   startTracking();
 
-  reducedMotion.addEventListener("change", () => {
-    if (reducedMotion.matches) {
-      stopTracking();
-      clearAtmosphere();
-      return;
-    }
-
-    startTracking();
-  });
+  reducedMotion.addEventListener("change", measureAndUpdate);
 }
 
 function initializeScrollParallax() {
@@ -486,7 +451,8 @@ function initializeScrollParallax() {
     const factor = Number(element.dataset.scrollParallax);
     const parallaxFactor = Number.isFinite(factor) ? factor : 0.08;
     const centerOffset = viewportHeight * 0.5 - (bounds.top + bounds.height * 0.5);
-    const translateY = Math.max(-48, Math.min(48, centerOffset * parallaxFactor));
+    const motionScale = reducedMotion.matches ? 0.4 : 1;
+    const translateY = Math.max(-48, Math.min(48, centerOffset * parallaxFactor)) * motionScale;
     const fadeIn = Math.max(0, Math.min(1, (viewportHeight - bounds.top) / (viewportHeight * 0.35)));
     const fadeOut = Math.max(0, Math.min(1, (bounds.bottom + viewportHeight * 0.2) / (viewportHeight * 0.4)));
 
@@ -505,41 +471,12 @@ function initializeScrollParallax() {
     }
   };
 
-  const clearParallax = () => {
-    elements.forEach((element) => {
-      element.style.removeProperty("--scroll-parallax-y");
-      element.style.removeProperty("--scroll-parallax-opacity");
-    });
-  };
-
-  const stopTracking = () => {
-    window.removeEventListener("scroll", scheduleUpdate);
-    window.removeEventListener("resize", scheduleUpdate);
-    if (animationFrame) {
-      window.cancelAnimationFrame(animationFrame);
-      animationFrame = 0;
-    }
-  };
-
   const startTracking = () => {
-    if (reducedMotion.matches) {
-      clearParallax();
-      return;
-    }
-
     updateActiveElements();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate, { passive: true });
   };
 
   startTracking();
-  reducedMotion.addEventListener("change", () => {
-    if (reducedMotion.matches) {
-      stopTracking();
-      clearParallax();
-      return;
-    }
-
-    startTracking();
-  });
+  reducedMotion.addEventListener("change", scheduleUpdate);
 }

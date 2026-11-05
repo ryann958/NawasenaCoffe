@@ -120,19 +120,15 @@
   *::before,
   *::after {
     scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 
   .has-scroll-reveal .reveal:not(.is-visible) {
-    opacity: 1;
+    opacity: 0;
     transform: none;
   }
 
   .hero__eyebrow,
-  .hero__eyebrow-text,
-  .hero__title-text,
   .hero__description,
   .hero__actions,
   .hero__signature,
@@ -140,21 +136,36 @@
     animation: none !important;
   }
 
-  .hero__title-text,
-  .hero__eyebrow-text,
   .hero__description,
   .hero__actions {
     opacity: 1;
     transform: none;
   }
 
-  .hero__eyebrow-text {
-    clip-path: none;
+  .hero__eyebrow-text,
+  .hero__title-text {
+    animation-duration: 700ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .has-scroll-reveal .reveal.is-visible {
+    animation-name: scroll-reveal-fade;
+    animation-duration: 420ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  @keyframes scroll-reveal-fade {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 
   .hero__ambient,
   .hero__visual-glow,
-  .hero__artwork,
   .hero__visual-caption {
     opacity: 1;
     translate: none;
