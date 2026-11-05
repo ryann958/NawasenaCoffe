@@ -398,8 +398,31 @@
   }
 
   .menu-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .menu-card {
+    border-radius: 0.7rem;
+  }
+
+  .menu-card__body {
+    padding: 0.85rem;
+  }
+
+  .menu-card__title {
+    font-size: 1.15rem;
+  }
+
+  .menu-card__description {
+    min-height: 0;
+    font-size: 0.72rem;
+  }
+
+  .menu-card__footer {
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.7rem;
   }
 
   .gallery-grid {
@@ -411,7 +434,7 @@
   }
 
   .gallery-card {
-    flex-basis: min(78vw, 20rem);
+    flex-basis: min(68vw, 17rem);
   }
 
   .contact-panel {
