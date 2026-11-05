@@ -644,11 +644,7 @@ img {
   display: block;
   width: min(78%, 21rem);
   aspect-ratio: 3 / 4;
-  overflow: hidden;
-  border: 1px solid rgb(243 229 210 / 16%);
-  border-radius: 1rem;
   object-fit: cover;
-  box-shadow: 0 2.5rem 5rem rgb(0 0 0 / 32%);
 }
 
 .story__visual-index {
