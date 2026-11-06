@@ -160,9 +160,33 @@
   fill: none;
 }
 
-/* Responsive */
+/* ===================================================
+   Contact page — full-width single-column layout
+   =================================================== */
+.contact-panel--full {
+  display: block;
+}
+
+.contact-panel--full .contact-panel__intro {
+  display: none;
+}
+
+.contact-panel--full .contact-panel__details {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
 @media (max-width: 899px) {
-  .teaser-grid {
+  .contact-panel--full .contact-panel__details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .contact-panel--full .contact-panel__details {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
