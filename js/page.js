@@ -6,19 +6,19 @@ const BRAND_SVG = `<svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="tru
 </svg>`;
 
 const NAV_LINKS = [
-  { href: "/", label: "Home", key: "home" },
-  { href: "/about", label: "About", key: "about" },
-  { href: "/menu", label: "Menu", key: "menu" },
-  { href: "/gallery", label: "Gallery", key: "gallery" },
-  { href: "/contact", label: "Contact", key: "contact" },
+  { href: "./index.html", label: "Home", key: "home" },
+  { href: "./about.html", label: "About", key: "about" },
+  { href: "./menu.html", label: "Menu", key: "menu" },
+  { href: "./gallery.html", label: "Gallery", key: "gallery" },
+  { href: "./contact.html", label: "Contact", key: "contact" },
 ];
 
 const ARROW_ICON = `<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11m-4-4 4 4-4 4"/></svg>`;
 
 function currentPageKey() {
   const path = window.location.pathname.replace(/\/$/, "") || "/";
-  if (path === "/") return "home";
-  return path.replace(/^\//, "").split("/")[0];
+  if (path === "/" || path.endsWith("/index.html")) return "home";
+  return path.replace(/^\//, "").replace(/\.html$/, "").split("/")[0];
 }
 
 function buildHeader(pageKey) {
@@ -29,7 +29,7 @@ function buildHeader(pageKey) {
 
   return `<header class="site-header">
   <div class="site-header__inner">
-    <a class="brand" href="/" aria-label="Nawasena Coffee, beranda">
+    <a class="brand" href="./index.html" aria-label="Nawasena Coffee, beranda">
       ${BRAND_SVG}
       <span class="brand__name"></span>
     </a>
@@ -51,7 +51,7 @@ function buildHeader(pageKey) {
           ${navLinks}
     </nav>
 
-    <a class="header-cta" href="/contact">
+    <a class="header-cta" href="./contact.html">
       <span>Contact Us</span>
       ${ARROW_ICON}
     </a>
@@ -62,15 +62,15 @@ function buildHeader(pageKey) {
 function buildFooter() {
   return `<footer class="site-footer">
   <div class="container site-footer__inner">
-    <a class="brand site-footer__brand" href="/" aria-label="Nawasena Coffee, kembali ke atas">
+    <a class="brand site-footer__brand" href="./index.html" aria-label="Nawasena Coffee, kembali ke atas">
       ${BRAND_SVG}
       <span class="brand__name"></span>
     </a>
     <nav class="site-footer__nav" aria-label="Navigasi footer">
-      <a href="/about">Our Story</a>
-      <a href="/menu">Menu</a>
-      <a href="/gallery">Gallery</a>
-      <a href="/contact">Contact</a>
+      <a href="./about.html">Our Story</a>
+      <a href="./menu.html">Menu</a>
+      <a href="./gallery.html">Gallery</a>
+      <a href="./contact.html">Contact</a>
     </nav>
     <p class="site-footer__copyright">
       © <span data-current-year></span> Nawasena Coffee

@@ -4,7 +4,8 @@
   --transition-easing: ease-in-out;
 }
 
-.hero__eyebrow {
+.hero__eyebrow,
+.page-hero .section-eyebrow {
   animation: hero-enter 550ms 80ms both;
   animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
@@ -13,8 +14,13 @@
   animation: hero-typewriter 1.1s 220ms steps(26, end) both;
 }
 
-.hero__title-text {
-  animation: hero-title-type 1.05s both;
+.hero__title-text,
+.page-hero__title {
+  animation: hero-title-type 1.05s 420ms both;
+}
+
+.page-hero__title {
+  clip-path: inset(0 100% 0 0);
 }
 
 .hero__title-line:nth-child(1) .hero__title-text {
@@ -62,6 +68,15 @@
 .has-scroll-reveal .reveal.is-visible {
   animation: scroll-reveal 650ms var(--reveal-delay, 0ms) both;
   animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.has-scroll-reveal .page-hero .section-eyebrow.reveal.is-visible {
+  animation: hero-enter 550ms 80ms both;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.has-scroll-reveal .page-hero__title.reveal.is-visible {
+  animation: hero-title-type 1.05s 420ms both;
 }
 
 .story__visual.reveal.is-visible .story__visual-photo {
@@ -187,6 +202,7 @@
   }
 
   .hero__eyebrow,
+  .page-hero .section-eyebrow,
   .hero__description,
   .hero__actions,
   .hero__signature {
@@ -230,7 +246,8 @@
   }
 
   .hero__eyebrow-text,
-  .hero__title-text {
+  .hero__title-text,
+  .page-hero__title {
     animation-duration: 700ms !important;
     animation-iteration-count: 1 !important;
   }
