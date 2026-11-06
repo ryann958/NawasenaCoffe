@@ -5,7 +5,7 @@
 
 /* Page hero — compact header used on inner pages */
 .page-hero {
-  padding-block: clamp(6rem, 12vw, 10rem) clamp(3rem, 6vw, 5rem);
+  padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1.75rem, 4vw, 3rem);
   background:
     radial-gradient(ellipse at 20% 60%, rgb(91 53 31 / 16%), transparent 38%),
     var(--color-surface);
@@ -94,6 +94,22 @@
 .page-cta--compact .page-cta__inner {
   max-width: 34rem;
   gap: 1.15rem;
+}
+
+.page-cta:not(.page-cta--compact) {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.page-cta:not(.page-cta--compact) .page-cta__inner {
+  gap: 1.25rem;
+}
+
+.page-cta:not(.page-cta--compact) .button,
+.page-cta:not(.page-cta--compact) .button--compact {
+  min-height: 2.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
 }
 
 .button--compact {
@@ -255,8 +271,14 @@
     font-size: 0.68rem;
   }
 
-  .page-cta--compact .page-cta__title {
+  .page-cta--compact .page-cta__title,
+  .page-cta:not(.page-cta--compact) .page-cta__title {
     font-size: clamp(1.8rem, 9vw, 2.4rem);
+  }
+
+  .page-cta:not(.page-cta--compact) .page-cta__actions,
+  .page-cta:not(.page-cta--compact) .page-cta__actions .button {
+    width: auto;
   }
 
   .quote-strip {
@@ -285,8 +307,14 @@
     width: auto;
   }
 
-  .page-cta--compact .page-cta__actions .button {
+  .page-cta--compact .page-cta__actions .button,
+  .page-cta:not(.page-cta--compact) .page-cta__actions,
+  .page-cta:not(.page-cta--compact) .page-cta__actions .button {
     width: auto;
+  }
+
+  .page-cta:not(.page-cta--compact) .button {
+    white-space: nowrap;
   }
 
   .contact-panel--full .contact-panel__details {
