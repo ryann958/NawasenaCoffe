@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gallery — Nawasena Coffee</title>
+    <meta name="description" content="Momen-momen kecil yang hangat di Nawasena Coffee — galeri foto suasana dan sajian kami.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="Nawasena Coffee">
+    <meta property="og:title" content="Gallery — Nawasena Coffee">
+    <meta property="og:description" content="Momen-momen kecil yang hangat di Nawasena Coffee.">
+
+    <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/pages.css">
+    <script type="module" src="./js/gallery-page.js" defer></script>
+  </head>
+  <body>
+    <div data-header-placeholder></div>
+
+    <main>
+      <!-- Page hero -->
+      <section class="page-hero">
+        <div class="container page-hero__inner">
+          <p class="section-eyebrow reveal">
+            <span class="section-eyebrow__line" aria-hidden="true"></span>
+            AROUND THE TABLE
+          </p>
+          <h1 class="page-hero__title reveal">
+            Little moments,<br>
+            <span>together.</span>
+          </h1>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section class="gallery-section section-space" aria-labelledby="gallery-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <h2 class="section-title" id="gallery-title" hidden>Gallery</h2>
+            </div>
+            <p class="section-heading__note" data-scroll-parallax="0.08">
+              Suasana Nawasena Coffee akan hadir di sini melalui foto resmi.
+            </p>
+          </div>
+
+          <div class="gallery-carousel">
+            <div class="gallery-grid" data-gallery-grid aria-label="Galeri foto" tabindex="0">
+              <p class="content-empty-state">
+                Galeri akan ditampilkan setelah foto resmi tersedia.
+              </p>
+            </div>
+            <button
+              class="button gallery-motion-toggle"
+              type="button"
+              data-gallery-motion-toggle
+              aria-controls="gallery-track"
+              aria-pressed="false"
+              hidden
+            >
+              Jeda gerak galeri
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="page-cta section-space">
+        <div class="container page-cta__inner reveal">
+          <h2 class="page-cta__title">Ceritakan momen<br><span>kamu juga.</span></h2>
+          <p class="page-cta__desc">Tag kami di media sosial dan jadilah bagian dari cerita Nawasena Coffee.</p>
+          <div class="page-cta__actions">
+            <a class="button" href="/contact">
+              Hubungi Kami
+              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11m-4-4 4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-footer-placeholder></div>
+  </body>
+</html>

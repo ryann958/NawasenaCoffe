@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu — Nawasena Coffee</title>
+    <meta name="description" content="Pilihan menu Nawasena Coffee — kopi, minuman non-kopi, dan makanan pilihan.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="Nawasena Coffee">
+    <meta property="og:title" content="Menu — Nawasena Coffee">
+    <meta property="og:description" content="Pilihan menu Nawasena Coffee — kopi, minuman non-kopi, dan makanan pilihan.">
+
+    <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/pages.css">
+    <script type="module" src="./js/menu-page.js" defer></script>
+  </head>
+  <body>
+    <div data-header-placeholder></div>
+
+    <main>
+      <!-- Page hero -->
+      <section class="page-hero">
+        <div class="container page-hero__inner">
+          <p class="section-eyebrow reveal">
+            <span class="section-eyebrow__line" aria-hidden="true"></span>
+            SIGNATURE MENU
+          </p>
+          <h1 class="page-hero__title reveal">
+            A cup for<br>
+            <span>your moment.</span>
+          </h1>
+        </div>
+      </section>
+
+      <!-- Menu grid -->
+      <section class="menu-section section-space" aria-labelledby="menu-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div>
+              <h2 class="section-title" id="menu-title" hidden>Menu</h2>
+            </div>
+            <p class="section-heading__note" data-scroll-parallax="0.08">
+              Pilihan menu dan harga resmi akan ditampilkan setelah dikonfirmasi.
+            </p>
+          </div>
+
+          <div class="menu-grid" data-menu-grid aria-live="polite">
+            <p class="content-empty-state">
+              Menu sedang disiapkan. Silakan kembali untuk melihat pilihan terbaru.
+            </p>
+          </div>
+          <div class="menu-more" hidden>
+            <button
+              class="button"
+              type="button"
+              data-menu-toggle
+              aria-controls="menu-items"
+              aria-expanded="false"
+              hidden
+            >
+              Lihat semua menu
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Order CTA -->
+      <section class="page-cta section-space">
+        <div class="container page-cta__inner reveal">
+          <h2 class="page-cta__title">Ingin pesan<br><span>sekarang?</span></h2>
+          <p class="page-cta__desc">Hubungi kami langsung via WhatsApp untuk pemesanan atau pertanyaan.</p>
+          <div class="page-cta__actions">
+            <a class="button" data-order-cta href="/contact">
+              Pesan via WhatsApp
+              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 10h11m-4-4 4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div data-footer-placeholder></div>
+  </body>
+</html>

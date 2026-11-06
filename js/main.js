@@ -1,7 +1,4 @@
 import { businessConfig } from "./config.js";
-import { menuItems } from "./menu-data.js";
-import { galleryItems } from "./gallery-data.js";
-import { getOptionalSupabaseClient } from "./services/supabase-client.js";
 
 const appRoot = document.querySelector("[data-app-root]");
 let scrollRevealObserver;
@@ -31,7 +28,6 @@ if (appRoot) {
     siteNav.addEventListener("click", (event) => {
       if (event.target instanceof Element && event.target.closest("a")) {
         setNavigationOpen(false);
-
         if (mobileNavigation.matches) {
           navToggle.focus();
         }
@@ -52,28 +48,6 @@ if (appRoot) {
     });
   }
 
-  const menuGrid = document.querySelector("[data-menu-grid]");
-  if (menuGrid) {
-    renderMenu(menuGrid, menuItems);
-  }
-
-  const menuToggle = document.querySelector("[data-menu-toggle]");
-  menuToggle?.addEventListener("click", () => {
-    const isExpanded = menuToggle.getAttribute("aria-expanded") !== "true";
-    menuToggle.setAttribute("aria-expanded", String(isExpanded));
-    menuToggle.textContent = isExpanded ? "Tampilkan lebih sedikit" : "Lihat semua menu";
-    menuGrid?.classList.toggle("menu-grid--collapsed", !isExpanded);
-  });
-
-  const galleryGrid = document.querySelector("[data-gallery-grid]");
-  if (galleryGrid) {
-    renderGallery(galleryGrid, galleryItems);
-  }
-  initializeGalleryMotion();
-
-  renderBusinessDetails();
-  renderSocialLinks();
-  void loadPublishedContent();
   initializeScrollReveal();
   initializeHeroScrollAtmosphere();
   initializeScrollParallax();
